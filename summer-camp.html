@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Summer Camp 2026 | Verenton International</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Verenton Summer Camp 2026 — A two-week immersive business, finance, and innovation experience for teens ages 15–18. July 6–17, 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #2980B9;
+      --blue-dark: #1a5276;
+      --teal: #17A589;
+      --teal-light: #1ABC9C;
+      --coral: #E74C3C;
+      --coral-light: #EC7063;
+      --gold: #F5B041;
+      --gold-dark: #D68910;
+      --purple: #8E44AD;
+      --purple-light: #A569BD;
+      --orange: #E67E22;
+      --orange-light: #F39C12;
+      --dark: #1a1a2e;
+      --darker: #0f0f1a;
+      --light: #fafbfc;
+      --muted: #6b7280;
+      --font: 'Plus Jakarta Sans', sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--light); color: var(--dark); line-height: 1.7; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+    .fade-up { animation: fadeUp 0.8s var(--ease) forwards; opacity: 0; }
+    .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.4s; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.7s var(--ease); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 2rem; transition: all 0.4s var(--ease); }
+    header.scrolled { background: rgba(26, 26, 46, 0.97); backdrop-filter: blur(16px); padding: 0.875rem 2rem; box-shadow: 0 4px 30px rgba(0,0,0,0.2); }
+    .nav-wrap { max-width: 1300px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 0.875rem; }
+    .logo-mark { width: 44px; height: 44px; background: linear-gradient(135deg, var(--gold), var(--coral)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.4rem; color: #fff; box-shadow: 0 6px 20px rgba(245, 176, 65, 0.4); transition: transform 0.3s var(--ease); }
+    .logo:hover .logo-mark { transform: rotate(-8deg) scale(1.08); }
+    .logo-text { font-weight: 700; font-size: 1.2rem; color: #fff; }
+    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    nav a { font-size: 0.95rem; font-weight: 500; color: rgba(255,255,255,0.85); transition: color 0.3s; }
+    nav a:hover { color: var(--gold); }
+    nav a.active { color: var(--gold); }
+    .nav-cta { background: var(--teal); color: #fff; padding: 0.7rem 1.5rem; border-radius: 50px; font-weight: 600; transition: all 0.3s var(--ease); box-shadow: 0 4px 15px rgba(23, 165, 137, 0.4); }
+    .nav-cta:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(23, 165, 137, 0.5); }
+    .nav-camp { background: linear-gradient(135deg, var(--orange), var(--gold)); color: #fff !important; padding: 0.55rem 1.25rem; border-radius: 50px; font-weight: 700; transition: all 0.3s var(--ease); box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4); font-size: 0.88rem; }
+    .nav-camp:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5); color: #fff !important; }
+    .menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .menu-btn span { width: 26px; height: 3px; background: #fff; border-radius: 2px; }
+
+    /* Hero */
+    .hero { min-height: 85vh; background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #1a2a1a 100%); position: relative; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; overflow: hidden; }
+    .hero-circle { position: absolute; border-radius: 50%; opacity: 0.12; }
+    .circle-1 { width: 700px; height: 700px; background: var(--orange); top: -250px; right: -150px; animation: float 9s ease-in-out infinite; }
+    .circle-2 { width: 450px; height: 450px; background: var(--gold); bottom: -150px; left: -100px; animation: float 11s ease-in-out infinite reverse; }
+    .circle-3 { width: 300px; height: 300px; background: var(--teal); top: 45%; left: 35%; animation: float 7s ease-in-out infinite 1s; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 50px 50px; }
+    .hero-content { max-width: 1100px; margin: 0 auto; padding: 9rem 2rem 5rem; position: relative; z-index: 10; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(245, 176, 65, 0.15); border: 1px solid rgba(245, 176, 65, 0.3); border-radius: 50px; padding: 0.5rem 1.25rem; font-size: 0.85rem; font-weight: 600; color: var(--gold); margin-bottom: 1.75rem; }
+    .hero-badge .dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: float 2s ease-in-out infinite; }
+    .hero-content h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.08; color: #fff; margin-bottom: 1.25rem; letter-spacing: -0.03em; }
+    .hero-content h1 .line2 { background: linear-gradient(135deg, var(--orange), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.65); margin-bottom: 1rem; max-width: 600px; line-height: 1.8; }
+    .hero-dates { display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 0.875rem 1.5rem; margin-bottom: 2.5rem; }
+    .hero-dates .cal-icon { font-size: 1.4rem; }
+    .hero-dates-text strong { display: block; font-size: 1.05rem; font-weight: 700; color: #fff; }
+    .hero-dates-text span { font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn-primary { background: linear-gradient(135deg, var(--orange), var(--gold)); color: #fff; padding: 1rem 2rem; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; font-size: 1rem; transition: all 0.3s var(--ease); box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4); display: inline-block; }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(230, 126, 34, 0.55); }
+    .btn-outline { background: transparent; color: #fff; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; border: 2px solid rgba(255,255,255,0.25); cursor: pointer; font-size: 1rem; transition: all 0.3s var(--ease); display: inline-block; }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(245, 176, 65, 0.1); }
+
+    /* Experience Grid */
+    .experience { padding: 6rem 2rem; background: var(--light); }
+    .experience-wrap { max-width: 1200px; margin: 0 auto; }
+    .section-head { text-align: center; margin-bottom: 4rem; }
+    .section-tag { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--orange); margin-bottom: 1rem; }
+    .section-tag::before, .section-tag::after { content: ''; width: 30px; height: 2px; background: var(--orange); }
+    .section-title { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800; color: var(--dark); }
+    .section-title span { color: var(--orange); }
+    .experience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .exp-card { background: #fff; border-radius: 20px; padding: 2.25rem; box-shadow: 0 4px 25px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); transition: all 0.4s var(--ease); position: relative; overflow: hidden; }
+    .exp-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; opacity: 0; transition: opacity 0.3s; }
+    .exp-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.09); }
+    .exp-card:hover::after { opacity: 1; }
+    .exp-card:nth-child(1)::after { background: linear-gradient(90deg, var(--blue), var(--teal)); }
+    .exp-card:nth-child(2)::after { background: linear-gradient(90deg, var(--orange), var(--gold)); }
+    .exp-card:nth-child(3)::after { background: linear-gradient(90deg, var(--teal), var(--teal-light)); }
+    .exp-card:nth-child(4)::after { background: linear-gradient(90deg, var(--purple), var(--purple-light)); }
+    .exp-card:nth-child(5)::after { background: linear-gradient(90deg, var(--coral), var(--coral-light)); }
+    .exp-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.25rem; }
+    .exp-card:nth-child(1) .exp-icon { background: linear-gradient(135deg, rgba(41, 128, 185, 0.15), rgba(23, 165, 137, 0.15)); }
+    .exp-card:nth-child(2) .exp-icon { background: linear-gradient(135deg, rgba(230, 126, 34, 0.15), rgba(245, 176, 65, 0.15)); }
+    .exp-card:nth-child(3) .exp-icon { background: linear-gradient(135deg, rgba(23, 165, 137, 0.15), rgba(26, 188, 156, 0.15)); }
+    .exp-card:nth-child(4) .exp-icon { background: linear-gradient(135deg, rgba(142, 68, 173, 0.15), rgba(165, 105, 189, 0.15)); }
+    .exp-card:nth-child(5) .exp-icon { background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(236, 112, 99, 0.15)); }
+    .exp-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.75rem; }
+    .exp-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; }
+
+    /* Outcomes */
+    .outcomes { padding: 6rem 2rem; background: linear-gradient(135deg, var(--dark), var(--darker)); position: relative; overflow: hidden; }
+    .outcomes::before { content: ''; position: absolute; top: -30%; right: -15%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(230, 126, 34, 0.12), transparent 60%); }
+    .outcomes::after { content: ''; position: absolute; bottom: -20%; left: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(23, 165, 137, 0.1), transparent 60%); }
+    .outcomes-wrap { max-width: 1000px; margin: 0 auto; position: relative; z-index: 10; }
+    .outcomes-head { text-align: center; margin-bottom: 3.5rem; }
+    .outcomes-tag { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 1rem; }
+    .outcomes-tag::before, .outcomes-tag::after { content: ''; width: 30px; height: 2px; background: var(--gold); }
+    .outcomes-head h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800; color: #fff; }
+    .outcomes-head h2 span { color: var(--gold); }
+    .outcomes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .outcome-item { display: flex; align-items: flex-start; gap: 1.25rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.75rem; transition: all 0.3s var(--ease); }
+    .outcome-item:hover { background: rgba(255,255,255,0.08); transform: translateX(6px); }
+    .outcome-check { width: 36px; height: 36px; background: linear-gradient(135deg, var(--teal), var(--teal-light)); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+    .outcome-item p { font-size: 1rem; color: rgba(255,255,255,0.85); font-weight: 500; line-height: 1.6; padding-top: 0.4rem; }
+
+    /* CTA */
+    .cta { padding: 6rem 2rem; background: #fff; }
+    .cta-wrap { max-width: 800px; margin: 0 auto; text-align: center; }
+    .cta h2 { font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 800; color: var(--dark); margin-bottom: 1.25rem; }
+    .cta h2 span { color: var(--orange); }
+    .cta p { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.8; }
+    .cta-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+
+    /* Footer */
+    footer { background: var(--darker); color: rgba(255,255,255,0.5); padding: 3rem 2rem; text-align: center; font-size: 0.9rem; }
+    footer a { color: var(--gold); }
+    footer a:hover { color: var(--teal); }
+    .footer-social { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.25rem; }
+    .footer-social a { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.5); font-size: 0.9rem; transition: color 0.3s; }
+    .footer-social a:hover { color: var(--gold); }
+    .footer-social svg { width: 18px; height: 18px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .experience-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .menu-btn { display: flex; }
+      .hero-content { padding: 8rem 1.5rem 4rem; }
+      .hero-content h1 { font-size: 2.25rem; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; }
+      .experience, .outcomes, .cta { padding: 4rem 1.5rem; }
+      .experience-grid { grid-template-columns: 1fr; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .cta-btns { flex-direction: column; width: 100%; }
+      .cta-btns .btn-primary, .cta-btns .btn-outline { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <a href="index.html" class="logo fade-up">
+        <div class="logo-mark">V</div>
+        <div class="logo-text">Verenton</div>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html#about" class="fade-up d1">About</a></li>
+          <li><a href="index.html#lessons" class="fade-up d2">The Course</a></li>
+          <li><a href="summer-camp.html" class="nav-camp fade-up d3 active">Summer Camp</a></li>
+          <li><a href="index.html#contact" class="nav-cta fade-up d4">Get Started</a></li>
+        </ul>
+      </nav>
+      <div class="menu-btn"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-circle circle-1"></div>
+      <div class="hero-circle circle-2"></div>
+      <div class="hero-circle circle-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge fade-up"><div class="dot"></div> Applications Now Open — Summer 2026</div>
+      <h1 class="fade-up d1">Summer Camp 2026<br><span class="line2">Business. Finance. Innovation.</span></h1>
+      <p class="hero-subtitle fade-up d2">And a whole lot of fun. A two-week immersive experience for teens ages 15–18.</p>
+      <div class="hero-dates fade-up d3">
+        <div class="cal-icon">📅</div>
+        <div class="hero-dates-text">
+          <strong>July 6 – July 17, 2026</strong>
+          <span>Two weeks · Teens ages 15–18</span>
+        </div>
+      </div>
+      <div class="hero-btns fade-up d4">
+        <a href="mailto:info@verenton.com" class="btn-primary">Apply Now</a>
+        <a href="#experience" class="btn-outline">See What's Included</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="experience" id="experience">
+    <div class="experience-wrap">
+      <div class="section-head reveal">
+        <div class="section-tag">The Program</div>
+        <h2 class="section-title">What You'll <span>Experience</span></h2>
+      </div>
+      <div class="experience-grid">
+        <div class="exp-card reveal">
+          <div class="exp-icon">🏗️</div>
+          <h3>Business Incubator Lab</h3>
+          <p>Develop your own business idea — individually or in teams — inside an incubator-styled environment designed to mirror how real startups are built.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="exp-icon">🚀</div>
+          <h3>Entrepreneurship Workshops</h3>
+          <p>Learn how real businesses are built: branding, pricing, customer discovery, pitching, and product development — taught by people who've done it.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="exp-icon">💰</div>
+          <h3>Finance Workshops</h3>
+          <p>Understand money beyond the basics — budgeting, investing, wealth-building principles, and financial decision-making that actually sticks.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="exp-icon">🎨</div>
+          <h3>Creative Expression Block</h3>
+          <p>Explore product design, visual storytelling, or arts-based entrepreneurship pathways. Creativity is a business skill here.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="exp-icon">⛺</div>
+          <h3>Outdoor Recreation</h3>
+          <p>Led by university staff to let out some steam, reset your mind, and build team energy. Because the best ideas come when you're not staring at a screen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="outcomes">
+    <div class="outcomes-wrap">
+      <div class="outcomes-head reveal">
+        <div class="outcomes-tag">Your Takeaways</div>
+        <h2>By the End of Camp, <span>You'll:</span></h2>
+      </div>
+      <div class="outcomes-grid reveal">
+        <div class="outcome-item">
+          <div class="outcome-check">✓</div>
+          <p>Pitch a business idea you developed from concept to presentation</p>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check">✓</div>
+          <p>Understand core financial principles that most adults wish they'd learned earlier</p>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check">✓</div>
+          <p>Strengthen teamwork and leadership skills in real-world collaborative settings</p>
+        </div>
+        <div class="outcome-item">
+          <div class="outcome-check">✓</div>
+          <p>Build confidence in your decision-making — in business and in life</p>
+        </div>
+        <div class="outcome-item" style="grid-column: 1 / -1;">
+          <div class="outcome-check">✓</div>
+          <p>Leave with a clearer vision for your future and the tools to pursue it</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-wrap reveal">
+      <h2>Ready to Have the <span>Best Summer</span> of Your Life?</h2>
+      <p>Spots are limited. Reach out to learn more about the program, costs, and how to secure your place at camp.</p>
+      <div class="cta-btns">
+        <a href="mailto:info@verenton.com" class="btn-primary">Email info@verenton.com</a>
+        <a href="https://instagram.com/verentonintl" target="_blank" rel="noopener" class="btn-outline">Follow @verentonintl</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-social">
+      <a href="https://instagram.com/verentonintl" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @verentonintl
+      </a>
+    </div>
+    <p>© <span id="year"></span> Verenton International. All rights reserved. · <a href="mailto:info@verenton.com">info@verenton.com</a></p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+    const reveals = document.querySelectorAll('.reveal');
+    const revealCheck = () => reveals.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); });
+    window.addEventListener('scroll', revealCheck);
+    revealCheck();
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); }));
+  </script>
+</body>
+</html>
