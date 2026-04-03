@@ -58,8 +58,11 @@
     .nav-cta:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(23, 165, 137, 0.5); }
     .nav-camp { background: linear-gradient(135deg, var(--orange), var(--gold)); color: #fff !important; padding: 0.55rem 1.25rem; border-radius: 50px; font-weight: 700; transition: all 0.3s var(--ease); box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4); font-size: 0.88rem; }
     .nav-camp:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5); color: #fff !important; }
-    .menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .menu-btn span { width: 26px; height: 3px; background: #fff; border-radius: 2px; }
+    .menu-btn { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; width: 36px; height: 36px; background: none; border: none; padding: 2px; z-index: 1100; }
+    .menu-btn span { display: block; width: 24px; height: 3px; background: #fff; border-radius: 2px; transition: all 0.35s cubic-bezier(0.16,1,0.3,1); transform-origin: center; }
+    .menu-btn.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .menu-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     /* Hero */
     .hero { min-height: 85vh; background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #1a2a1a 100%); position: relative; display: flex; align-items: center; overflow: hidden; }
@@ -150,12 +153,16 @@
       .experience-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-      nav ul { display: none; }
       .menu-btn { display: flex; }
+      nav { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15,15,26,0.98); backdrop-filter: blur(20px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.35s cubic-bezier(0.16,1,0.3,1); z-index: 1050; }
+      nav.open { opacity: 1; pointer-events: all; }
+      nav ul { flex-direction: column; gap: 2.5rem; text-align: center; }
+      nav a { font-size: 1.35rem; font-weight: 600; color: rgba(255,255,255,0.85); }
+      .nav-cta, .nav-camp { font-size: 1.1rem; padding: 0.85rem 2.25rem; }
       .hero-content { padding: 8rem 1.5rem 4rem; }
       .hero-content h1 { font-size: 2.25rem; }
-      .hero-btns { flex-direction: column; }
-      .btn-primary, .btn-outline { width: 100%; text-align: center; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 320px; text-align: center; }
       .experience, .outcomes, .cta { padding: 4rem 1.5rem; }
       .experience-grid { grid-template-columns: 1fr; }
       .outcomes-grid { grid-template-columns: 1fr; }
@@ -179,7 +186,9 @@
           <li><a href="index.html#contact" class="nav-cta fade-up d4">Get Started</a></li>
         </ul>
       </nav>
-      <div class="menu-btn"><span></span><span></span><span></span></div>
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -299,7 +308,27 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
     window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+
+    // Hamburger menu
+    const menuBtn = document.getElementById('menu-btn');
+    const mainNav = document.querySelector('nav');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      menuBtn.classList.toggle('open', isOpen);
+      menuBtn.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mainNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
     const reveals = document.querySelectorAll('.reveal');
     const revealCheck = () => reveals.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); });
     window.addEventListener('scroll', revealCheck);
